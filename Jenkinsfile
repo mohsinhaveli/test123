@@ -1,34 +1,16 @@
 pipeline {
     agent any
+    environment { 
+        CC = 'clang'
+    }
     stages {
-        stage('One') {
-                steps {
-                        echo 'Hi, this is Zulaikha from edureka'
-			
-                }
-        }
-	    stage('Two'){
-		    
-		steps {
-			input('Do you want to proceed?')
-        }
-	    }
-        stage('Three') {
-                when {
-                        not {
-                                branch "master"
-                        }
-                }
-                steps {
-			echo "Hello"
-                        }
-        }
-        stage('Four') {
-            
-				steps {
-					echo 'Running the last test..'
-				}
-                               
-			}  
+        stage('Example') {
+            environment { 
+                DEBUG_FLAGS = '-g'
+            }
+            steps {
+                sh 'printenv'
+            }
         }
     }
+}
