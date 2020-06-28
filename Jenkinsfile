@@ -1,15 +1,16 @@
 pipeline {
     agent any
-    environment { 
-        CC = 'clang'
-    }
+    
     stages {
-        stage('Example') {
-            environment { 
-                DEBUG_FLAGS = '-g'
-            }
+        stage('Checkout code') {
             steps {
-                sh 'printenv'
+                checkout scm
+            }
+        }
+        
+        stage('Example') {
+            steps {
+                sh 'echo "pollscm"'
             }
         }
     }
